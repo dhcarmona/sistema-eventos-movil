@@ -1,0 +1,2 @@
+rails generate scaffold Usuario nombre:string foto:string contrasena:string username:string facebook:string twitter:string
+rails generate scaffold Establecimiento nombre:string direccion:string longitud:float latitud:float descripcion:string usuario_id:integer

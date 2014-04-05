@@ -3,8 +3,8 @@ class CreateUsuarios < ActiveRecord::Migration
     create_table :usuarios do |t|
       t.string :nombre
       t.string :foto
-      t.string :contrasena
       t.string :username
+      t.string :password_digest
       t.string :facebook
       t.string :twitter
 

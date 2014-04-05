@@ -1,8 +1,8 @@
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
-
-  # GET /usuarios
-  # GET /usuarios.json
+	
+  #GET /usuarios
+  #GET /usuarios.json
   def index
     @usuarios = Usuario.all
   end
@@ -69,6 +69,6 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :foto, :contrasena, :username, :facebook, :twitter)
+      params.require(:usuario).permit(:nombre, :foto, :username, :password_digest, :facebook, :twitter)
     end
 end

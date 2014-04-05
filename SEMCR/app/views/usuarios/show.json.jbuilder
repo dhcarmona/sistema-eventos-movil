@@ -1,1 +1,1 @@
-json.extract! @usuario, :id, :nombre, :foto, :contrasena, :username, :facebook, :twitter, :created_at, :updated_at
+json.extract! @usuario, :id, :nombre, :foto, :username, :password_digest, :facebook, :twitter, :created_at, :updated_at

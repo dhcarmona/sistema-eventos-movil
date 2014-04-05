@@ -11,13 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404134015) do
+ActiveRecord::Schema.define(version: 20140405032030) do
+
+  create_table "establecimientos", force: true do |t|
+    t.string   "nombre"
+    t.text     "direccion"
+    t.float    "longitud"
+    t.float    "latitud"
+    t.text     "descripcion"
+    t.integer  "usuario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "eventos", force: true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.integer  "establecimiento_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "imagenes_establecimientos", force: true do |t|
+    t.string   "url"
+    t.integer  "id_establecimiento"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "usuarios", force: true do |t|
     t.string   "nombre"
     t.string   "foto"
-    t.string   "contrasena"
     t.string   "username"
+    t.string   "password_digest"
     t.string   "facebook"
     t.string   "twitter"
     t.datetime "created_at"
