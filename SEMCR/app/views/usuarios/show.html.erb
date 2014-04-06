@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 
 .container {
-	width: 960px;
+	width: 1500px;
 	background: #FFF;
 	margin: 0 auto;
 }
@@ -35,10 +35,9 @@ h1, h2, h3, h4, h5, h6, p {
 
 <div class="container">
   <div class="content">
-    <table width="961" height="443" border="0">
+    <table width="1500" height="443" border="0">
       <tr>
         <td width="360">
-		
 			<p>
 			  <%= @usuario.nombre %>
 			</p>
@@ -62,20 +61,56 @@ h1, h2, h3, h4, h5, h6, p {
 			  <strong>Twitter:</strong>
 			  <%= @usuario.twitter %>
 			</p>
+			<p align="center">&nbsp;</p>
+			<p align="center">&nbsp;</p>
 			<h4 align="center">Establecimientos Asociados</h4>
 			<table>
-				<tr>
-					<td width="176">
-						<div align="center"><h4>Nombre</h4></div>
-					</td>
+				<tr>	
+						<td width="230"><strong>Nombre</strong></td>
+						<td width="100"><%= %></td>
+						<td width="100"><%= %></td>
+						<td width="100"><%= %></td>
+				</tr>
+				<% @establecimientos.each do |establecimiento| %>
+					  <tr>
+						<td width="230"><%= establecimiento.nombre %></td>
+						<td width="100"><%= link_to 'Mostrar', establecimiento %></td>
+						<td width="100"><%= link_to 'Editar', edit_establecimiento_path(establecimiento) %></td>
+						<td width="100"><%= link_to 'Eliminar', establecimiento, method: :delete, data: { confirm: '¿Está segur@?' } %></td>
+					  </tr>
+					<% end %>
 					<td width="117">&nbsp;</td>
 				</tr>
 			</table>
 		</td>
         <td width="700"><h1 align="center">Sistema de Eventos Culturales</h1>
           <h3 align="center">Gestion de Eventos</h3>
+		  <h1 align="center">&nbsp;</h1>
           <p align="center">Eventos Registrados</p>
-          <p align="center">&nbsp;</p>
+		  <table cellspacing="20" align="center">
+					<tr>
+								<td width="120"><strong>Nombre</strong></td>
+								<td width="120"><strong>Descripción</strong></td>
+								<td width="150"><strong>Establecimiento</strong></td>
+								<td width="100"><%= %></td>
+								<td width="100"><%= %></td>
+								<td width="100"><%= %></td>
+					</tr>
+			  <% @establecimientos.each do |establecimiento| %>
+				<% @eventos = establecimiento.eventos %>
+				<% @eventos.each do |evento| %>
+							<tr>
+								<td width="120"><%= evento.nombre %></td>
+								<td width="120"><%= evento.descripcion %></td>
+								<td width="150"><%= evento.establecimiento.nombre %></td>
+								<td width="100"><%= link_to 'Mostrar', evento %></td>
+								<td width="100"><%= link_to 'Editar', edit_evento_path(evento) %></td>
+								<td width="100"><%= link_to 'Eliminar', evento, method: :delete, data: { confirm: '¿Está segur@?' } %></td>
+							</tr>
+		 
+				<% end %>
+			  <% end %>
+		 </table>
         <p></p></td>
       </tr>
     </table>
@@ -84,7 +119,6 @@ h1, h2, h3, h4, h5, h6, p {
   <!-- end .container --></div>
 </body>
 
-<p id="notice"><%= notice %></p>
 
 <%= link_to 'Edit', edit_usuario_path(@usuario) %> |
 <%= link_to 'Back', controller: "login", action: "login" %>

@@ -1,4 +1,6 @@
 SEMCR::Application.routes.draw do
+  resources :eventos
+
   resources :establecimientos
 
   resources :usuarios

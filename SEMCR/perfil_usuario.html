@@ -15,18 +15,17 @@ body {
 
 
 h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+	margin-top: 0;	
 	padding-right: 15px;
-	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+	padding-left: 15px;
 }
 
-/
+
 .container {
 	width: 960px;
 	background: #FFF;
-	margin: 0 auto; 
+	margin: 0 auto;
 }
-
 
 .content {
 
@@ -43,7 +42,14 @@ h1, h2, h3, h4, h5, h6, p {
   <div class="content">
     <table width="961" height="443" border="0">
       <tr>
-        <td width="360">&nbsp;</td>
+        <td width="360"><table width="303" border="1">
+          <tr>
+            <td width="176">
+            	<div align="center"><h4>Nombre</h4></div>
+            </td>
+            <td width="117">&nbsp;</td>
+          </tr>
+        </table></td>
         <td width="591"><h1 align="center">Sistema de Eventos Culturales</h1>
           <h3 align="center">Gestion de Eventos</h3>
           <p align="center">Eventos Registrados</p>
