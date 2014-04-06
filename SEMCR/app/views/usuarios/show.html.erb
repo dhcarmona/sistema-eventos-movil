@@ -1,34 +1,90 @@
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background: #42413C;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+
+.container {
+	width: 960px;
+	background: #FFF;
+	margin: 0 auto;
+}
+
+.content {
+
+	padding: 10px 0;
+}
+
+
+-->
+</style></head>
+
+<body>
+
+<div class="container">
+  <div class="content">
+    <table width="961" height="443" border="0">
+      <tr>
+        <td width="360">
+		
+			<p>
+			  <%= @usuario.nombre %>
+			</p>
+
+			<p>
+			  <strong>Foto:</strong>
+			  <%= @usuario.foto %>
+			</p>
+
+			<p>
+			  <strong>Username:</strong>
+			  <%= @usuario.username %>
+			</p>
+
+			<p>
+			  <strong>Facebook:</strong>
+			  <%= @usuario.facebook %>
+			</p>
+
+			<p>
+			  <strong>Twitter:</strong>
+			  <%= @usuario.twitter %>
+			</p>
+			<h4 align="center">Establecimientos Asociados</h4>
+			<table>
+				<tr>
+					<td width="176">
+						<div align="center"><h4>Nombre</h4></div>
+					</td>
+					<td width="117">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+        <td width="700"><h1 align="center">Sistema de Eventos Culturales</h1>
+          <h3 align="center">Gestion de Eventos</h3>
+          <p align="center">Eventos Registrados</p>
+          <p align="center">&nbsp;</p>
+        <p></p></td>
+      </tr>
+    </table>
+    <h1 align="center">&nbsp;</h1>
+    <!-- end .content --></div>
+  <!-- end .container --></div>
+</body>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @usuario.nombre %>
-</p>
-
-<p>
-  <strong>Foto:</strong>
-  <%= @usuario.foto %>
-</p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @usuario.username %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @usuario.password_digest %>
-</p>
-
-<p>
-  <strong>Facebook:</strong>
-  <%= @usuario.facebook %>
-</p>
-
-<p>
-  <strong>Twitter:</strong>
-  <%= @usuario.twitter %>
-</p>
-
 <%= link_to 'Edit', edit_usuario_path(@usuario) %> |
-<%= link_to 'Back', usuarios_path %>
+<%= link_to 'Back', controller: "login", action: "login" %>

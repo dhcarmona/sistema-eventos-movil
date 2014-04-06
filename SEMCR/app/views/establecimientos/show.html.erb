@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @establecimiento.nombre %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @establecimiento.direccion %>
+</p>
+
+<p>
+  <strong>Longitud:</strong>
+  <%= @establecimiento.longitud %>
+</p>
+
+<p>
+  <strong>Latitud:</strong>
+  <%= @establecimiento.latitud %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @establecimiento.descripcion %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @establecimiento.usuario_id %>
+</p>
+
+<%= link_to 'Edit', edit_establecimiento_path(@establecimiento) %> |
+<%= link_to 'Back', establecimientos_path %>

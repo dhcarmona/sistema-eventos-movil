@@ -51,17 +51,21 @@ a:hover, a:active, a:focus {
 		  	  <p align="center">&nbsp;</p>
     <h1 align="center">Sistema de Eventos Móvil</h1>
     <h3 align="center">Eventos y Organizaciones</h3>
+	<% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+              <%= value %>
+        </div>
+    <% end %>
     <p>&nbsp;</p>
 	  <p align="center">&nbsp;</p>
 	<%= form_tag do %>
     <p align="center">Nombre de Usuario</p>
 	<p align="center"><%=text_field_tag "username"%></p>
     <p align="center">Contraseña</p>
-	<p align="center"><%=text_field_tag "password"%></p>
+	<p align="center"><%=password_field_tag "password"%></p>
     <p align="center">&nbsp;</p>
 	<p align="center"><%=submit_tag "Ingresar"%></p>	
     <p>&nbsp;</p>
-	<%= @username %>
 	<% end %>
     <!-- end .content --></div>
   <!-- end .container --></div>

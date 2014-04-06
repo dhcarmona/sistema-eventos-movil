@@ -1,3 +1,3 @@
 class Establecimiento < ActiveRecord::Base
-	belongs_to :usuario
+ attr_accessible :id, :nombre, :direccion, :longitud, :latitud, :descripcion, :usuario_id
 end

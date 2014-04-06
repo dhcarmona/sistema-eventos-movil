@@ -10,6 +10,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show
+	@establecimientos = Establecimiento.find_by usuario_id: params[:id]
   end
 
   # GET /usuarios/new
