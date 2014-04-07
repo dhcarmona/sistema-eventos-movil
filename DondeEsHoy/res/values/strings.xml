@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">¿Donde es hoy?</string>
+    <string name="open_drawer">Drawer abierto</string>
+	<string name="close_drawer">Drawer cerrado</string>
+	<string name="large_text">Large Text</string>
+
+</resources>
