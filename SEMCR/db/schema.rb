@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406015941) do
+ActiveRecord::Schema.define(version: 20140417191339) do
 
   create_table "establecimientos", force: true do |t|
     t.string   "nombre"
@@ -43,11 +43,26 @@ ActiveRecord::Schema.define(version: 20140406015941) do
     t.string   "nombre"
     t.string   "foto"
     t.string   "username"
-    t.string   "password_digest"
     t.string   "facebook"
     t.string   "twitter"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "email"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
   end
+
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -10,8 +10,12 @@ class UsuariosController < ApplicationController
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show
-	@establecimientos = Establecimiento.where("usuario_id=?",params[:id])
-	@usuario = Usuario.find(params[:id])
+  @usuario = Usuario.find(params[:id]) #busca el usuario con ese id
+  if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+      redirect_to :controller=>'login', :action=>'login'
+  end
+  @establecimientos = @usuario.establecimientos
+	#@establecimientos = Establecimiento.where("usuario_id=?",params[:id])
   end
 
   # GET /usuarios/new
@@ -21,6 +25,10 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/1/edit
   def edit
+      @usuario = Usuario.find(params[:id]) #busca el usuario con ese id
+      if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+        redirect_to :controller=>'login', :action=>'login'
+      end
   end
 
   # POST /usuarios
@@ -56,6 +64,10 @@ class UsuariosController < ApplicationController
   # DELETE /usuarios/1
   # DELETE /usuarios/1.json
   def destroy
+    @usuario = Usuario.find(params[:id]) #busca el usuario con ese id
+      if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+        redirect_to :controller=>'login', :action=>'login'
+      end
     @usuario.destroy
     respond_to do |format|
       format.html { redirect_to usuarios_url }
@@ -71,6 +83,6 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :foto, :username, :password_digest, :facebook, :twitter)
+      params.require(:usuario).permit(:email, :nombre, :foto, :username, :password, :facebook, :twitter)
     end
 end

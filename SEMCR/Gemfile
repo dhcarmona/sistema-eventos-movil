@@ -19,6 +19,9 @@ gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
 gem 'bcrypt'
 gem 'protected_attributes'
+gem 'devise'
+gem 'cancan'
+gem "paperclip", "~> 3.5.3"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

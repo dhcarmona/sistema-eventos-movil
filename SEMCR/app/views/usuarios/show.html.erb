@@ -1,70 +1,47 @@
-<style type="text/css">
-<!--
-body {
-	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
-	background: #42413C;
-	margin: 0;
-	padding: 0;
-	color: #000;
-}
-
-
-h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	
-	padding-right: 15px;
-	padding-left: 15px;
-}
-
-
-.container {
-	width: 1500px;
-	background: #FFF;
-	margin: 0 auto;
-}
-
-.content {
-
-	padding: 10px 0;
-}
-
-
--->
-</style></head>
+</head>
 
 <body>
 
 <div class="container">
   <div class="content">
-    <table width="1500" height="443" border="0">
+    <table cellpadding="20">
       <tr>
         <td width="360">
-			<p>
-			  <%= @usuario.nombre %>
-			</p>
+        	<div class="bg-primary">
+				<h1 align="center">&nbsp;</h1>
+				
+				<p align="center">
+				  <%= @usuario.nombre %>
+				</p>
 
-			<p>
-			  <strong>Foto:</strong>
-			  <%= @usuario.foto %>
-			</p>
+				<p align="center">
+				  <%= image_tag @usuario.foto.url(:medium)%>
+				</p>
 
-			<p>
-			  <strong>Username:</strong>
-			  <%= @usuario.username %>
-			</p>
+				<p align="center">
+				  <strong>Nombre de Usuario:</strong>
+				  <%= @usuario.username %>
+				</p align="center">
 
-			<p>
-			  <strong>Facebook:</strong>
-			  <%= @usuario.facebook %>
-			</p>
+				<p align="center">
+				  <strong>Facebook:</strong>
+				  <%= @usuario.facebook %>
+				</p>
 
-			<p>
-			  <strong>Twitter:</strong>
-			  <%= @usuario.twitter %>
-			</p>
+				<p align="center">
+				  <strong>Twitter:</strong>
+				  <%= @usuario.twitter %>
+				</p>
+				<p align="center">
+				<%= link_to 'Editar Usuario', edit_usuario_path(@usuario), :class => "btn btn-default btn-sm"%></p>
+			</div>
 			<p align="center">&nbsp;</p>
 			<p align="center">&nbsp;</p>
 			<h4 align="center">Establecimientos Asociados</h4>
-			<table>
+			<% if (@establecimientos.empty?) %>
+				<h5 align="center">No tiene establecimientos registrados</h4>
+			<% else %>
+			<table class="table">
 				<tr>	
 						<td width="230"><strong>Nombre</strong></td>
 						<td width="100"><%= %></td>
@@ -74,20 +51,25 @@ h1, h2, h3, h4, h5, h6, p {
 				<% @establecimientos.each do |establecimiento| %>
 					  <tr>
 						<td width="230"><%= establecimiento.nombre %></td>
-						<td width="100"><%= link_to 'Mostrar', establecimiento %></td>
+						<td width="100"><%= link_to 'Mostrar', establecimiento, :class => "bg-info" %></td>
 						<td width="100"><%= link_to 'Editar', edit_establecimiento_path(establecimiento) %></td>
 						<td width="100"><%= link_to 'Eliminar', establecimiento, method: :delete, data: { confirm: '¿Está segur@?' } %></td>
 					  </tr>
 					<% end %>
+					 <p align="center"><%=link_to "Añadir Establecimiento", new_establecimiento_path, :class => "btn btn-default btn-sm"%></p> 
 					<td width="117">&nbsp;</td>
 				</tr>
 			</table>
+			<% end %>
 		</td>
         <td width="700"><h1 align="center">Sistema de Eventos Culturales</h1>
           <h3 align="center">Gestion de Eventos</h3>
 		  <h1 align="center">&nbsp;</h1>
-          <p align="center">Eventos Registrados</p>
-		  <table cellspacing="20" align="center">
+          <h4 align="center">Eventos Registrados</h4>
+	  <% if (@establecimientos.empty?) %>
+		<h5 align="center">No tiene eventos registrados</h4>
+	  <% else %>
+		  <table cellspacing="20" align="center" class="table">
 					<tr>
 								<td width="120"><strong>Nombre</strong></td>
 								<td width="120"><strong>Descripción</strong></td>
@@ -111,6 +93,7 @@ h1, h2, h3, h4, h5, h6, p {
 				<% end %>
 			  <% end %>
 		 </table>
+	  <% end %>
         <p></p></td>
       </tr>
     </table>
@@ -120,5 +103,5 @@ h1, h2, h3, h4, h5, h6, p {
 </body>
 
 
-<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
-<%= link_to 'Back', controller: "login", action: "login" %>
+
+<%= link_to 'Cerrar Sesión', destroy_usuario_session_path, method: :delete%>

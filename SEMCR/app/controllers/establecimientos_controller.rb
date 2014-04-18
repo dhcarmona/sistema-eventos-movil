@@ -9,12 +9,18 @@ class EstablecimientosController < ApplicationController
 
   # GET /establecimientos/1
   # GET /establecimientos/1.json
-  def show
+  def show 
+    #No tiene restricciones, queda abierto para el API
   end
 
   # GET /establecimientos/new
   def new
-    @establecimiento = Establecimiento.new
+    if (usuario_signed_in?) #Si hay un usuario logueado, entonces lo toma
+      @usuario = current_usuario
+      @establecimiento = Establecimiento.new
+    else #Si no hay usuario logueado, entonces no lo deja crear establecimiento y lo manda a loguearse.
+      redirect_to :controller=>'login', :action=>'login'
+    end
   end
 
   # GET /establecimientos/1/edit
@@ -25,7 +31,7 @@ class EstablecimientosController < ApplicationController
   # POST /establecimientos.json
   def create
     @establecimiento = Establecimiento.new(establecimiento_params)
-
+    @establecimiento.usuario_id = current_usuario.id
     respond_to do |format|
       if @establecimiento.save
         format.html { redirect_to @establecimiento, notice: 'Establecimiento was successfully created.' }

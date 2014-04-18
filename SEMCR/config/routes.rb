@@ -1,4 +1,6 @@
 SEMCR::Application.routes.draw do
+  devise_for :usuarios
+  root 'login#login'
   resources :eventos
 
   resources :establecimientos
