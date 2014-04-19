@@ -4,7 +4,7 @@ class EstablecimientosController < ApplicationController
   # GET /establecimientos
   # GET /establecimientos.json
   def index
-    @establecimientos = Establecimiento.all
+    redirect_to :controller=>'login', :action=>'login' #lo envia a login, no lo deja modificarlo
   end
 
   # GET /establecimientos/1
@@ -25,6 +25,11 @@ class EstablecimientosController < ApplicationController
 
   # GET /establecimientos/1/edit
   def edit
+      @usuario = Establecimiento.find(params[:id]).usuario #busca el usuario al que pertenece el establecimiento
+      if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+        redirect_to :controller=>'login', :action=>'login' #lo envia a login, no lo deja modificarlo
+      end
+      #si llega aca es porque si es el dueño del establecimiento
   end
 
   # POST /establecimientos
@@ -46,6 +51,11 @@ class EstablecimientosController < ApplicationController
   # PATCH/PUT /establecimientos/1
   # PATCH/PUT /establecimientos/1.json
   def update
+      @usuario = Establecimiento.find(establecimiento_params[:id]).usuario #busca el usuario al que pertenece el establecimiento
+      if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+        redirect_to :controller=>'login', :action=>'login' #lo envia a login, no lo deja modificarlo
+      end
+      #si llega aca es porque si es el dueño del establecimiento
     respond_to do |format|
       if @establecimiento.update(establecimiento_params)
         format.html { redirect_to @establecimiento, notice: 'Establecimiento was successfully updated.' }

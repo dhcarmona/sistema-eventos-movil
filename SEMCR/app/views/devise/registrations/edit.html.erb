@@ -1,29 +1,48 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="content">
+
+    <h1 align="center">Sistema de Eventos Móvil</h1>
+    <h3 align="center">Eventos y Organizaciones</h3>
+    <p>&nbsp;</p>
+    <h2 align="center">Editar Usuario</h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <div align="center"><%= devise_error_messages! %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+      <div align="center"><%= f.label 'Nombre' %><br />
+      <%= f.text_field :nombre, autofocus: true, :class => "form_control" %></div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div align="center"><%= f.label 'Nombre de Usuario' %><br />
+      <%= f.text_field :username, :class => "form_control"  %></div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <div align="center"><%= f.label 'Correo Electrónico' %><br />
+      <%= f.email_field :email, :class => "form_control"  %></div>
+
+      <div align="center"><%= f.label 'Imagen' %><br />
+      <%= f.file_field :foto, :class => "form_control"  %></div>
+
+    <p>&nbsp;</p>
+      <div align="center"><%= f.label 'Facebook' %><br />
+      <%= f.text_field :facebook, :class => "form_control"  %></div>
+      <div align="center"><%= f.label 'Twitter' %><br />
+      <%= f.text_field :twitter, :class => "form_control"  %></div>
+    <p>&nbsp;</p>
+
+  <div align="center"><%= f.label 'Contraseña' %> <i>(déjela en blanco si no quiere cambiarla)</i><br />
     <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div align="center"><%= f.label 'Confirmar contraseña' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <div align="center"><%= f.label 'Contraseña actual' %> <i>(se necesita su contraseña actual para confirmar los cambios)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div align="center"><%= f.submit "Guardar Cambios" %></div>
+
 <% end %>
 
-<h3>Cancel my account</h3>
+    <!-- end .content --></div>
+  <!-- end .container --></div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= link_to 'Atrás', usuarios_path %>

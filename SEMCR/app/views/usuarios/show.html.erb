@@ -33,7 +33,7 @@
 				  <%= @usuario.twitter %>
 				</p>
 				<p align="center">
-				<%= link_to 'Editar Usuario', edit_usuario_path(@usuario), :class => "btn btn-default btn-sm"%></p>
+				<%= link_to 'Editar Usuario', edit_usuario_registration_path, :class => "btn btn-default btn-sm"%></p>
 			</div>
 			<p align="center">&nbsp;</p>
 			<p align="center">&nbsp;</p>
@@ -66,6 +66,7 @@
           <h3 align="center">Gestion de Eventos</h3>
 		  <h1 align="center">&nbsp;</h1>
           <h4 align="center">Eventos Registrados</h4>
+          <p align="center"><%= link_to 'Añadir Evento', new_evento_path, :class => "btn btn-default btn-sm"%></p>
 	  <% if (@establecimientos.empty?) %>
 		<h5 align="center">No tiene eventos registrados</h4>
 	  <% else %>

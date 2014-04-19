@@ -10,12 +10,19 @@ class UsuariosController < ApplicationController
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show
-  @usuario = Usuario.find(params[:id]) #busca el usuario con ese id
-  if (current_usuario != @usuario) #si el usuario logueado no es el mismo
-      redirect_to :controller=>'login', :action=>'login'
-  end
-  @establecimientos = @usuario.establecimientos
-	#@establecimientos = Establecimiento.where("usuario_id=?",params[:id])
+      respond_to do |format| #dependiendo del formato del request, el app movil lo pide por JSON.
+      format.html { #si es por HTML, es un browser
+        @usuario = Usuario.find(params[:id]) #busca el usuario con ese id
+        if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+            redirect_to :controller=>'login', :action=>'login' #lo manda a loguearse
+        end
+        @establecimientos = @usuario.establecimientos
+      }
+      format.json { #si el request es por JSON
+        #####  IMPORTANTE -> verificar identidad antes de enviar json.
+        render json: @usuario 
+      }
+      end
   end
 
   # GET /usuarios/new

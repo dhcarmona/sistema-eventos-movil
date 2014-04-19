@@ -1,6 +1,47 @@
-<h1>Editing usuario</h1>
+<div class="container">
+  <div class="content">
 
-<%= render 'form' %>
+    <h1 align="center">Sistema de Eventos Móvil</h1>
+    <h3 align="center">Eventos y Organizaciones</h3>
+    <p>&nbsp;</p>
+    <h2 align="center">Editar Usuario</h2>
 
-<%= link_to 'Show', @usuario %> |
-<%= link_to 'Back', usuarios_path %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+		  <div align="center"><%= f.label 'Nombre' %><br />
+		  <%= f.text_field :nombre, autofocus: true, :class => "form_control" %></div>
+
+		  <div align="center"><%= f.label 'Nombre de Usuario' %><br />
+		  <%= f.text_field :username, :class => "form_control"  %></div>
+
+		  <div align="center"><%= f.label 'Correo Electrónico' %><br />
+		  <%= f.email_field :email, :class => "form_control"  %></div>
+
+		  <div align="center"><%= f.label 'Imagen' %><br />
+		  <%= f.file_field :foto, :class => "form_control"  %></div>
+
+    <p>&nbsp;</p>
+		  <div align="center"><%= f.label 'Facebook' %><br />
+		  <%= f.text_field :facebook, :class => "form_control"  %></div>
+		  <div align="center"><%= f.label 'Twitter' %><br />
+		  <%= f.text_field :twitter, :class => "form_control"  %></div>
+    <p>&nbsp;</p>
+
+  <div><%= f.label 'Contraseña' %> <i>(déjela en blanco si no quiere cambiarla)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <div><%= f.label 'Confirmar contraseña' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+  <div><%= f.label 'Contraseña actual' %> <i>(se necesita su contraseña actual para confirmar los cambios)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %></div>
+
+  <div><%= f.submit "Guardar" %></div>
+<% end %>
+
+    <!-- end .content --></div>
+  <!-- end .container --></div>
+
+<%= link_to 'Atrás', usuarios_path %>

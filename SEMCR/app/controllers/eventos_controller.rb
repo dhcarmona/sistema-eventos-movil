@@ -4,12 +4,14 @@ class EventosController < ApplicationController
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Evento.all
+    # Abierta para el API
+      
   end
 
   # GET /eventos/1
   # GET /eventos/1.json
   def show
+    #Abierta para el API
   end
 
   # GET /eventos/new
@@ -19,6 +21,12 @@ class EventosController < ApplicationController
 
   # GET /eventos/1/edit
   def edit
+      @usuario = Evento.find(params[:id]).establecimiento.usuario #busca el usuario al que pertenece el evento
+      if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+        redirect_to :controller=>'login', :action=>'login' #lo envia a login, no lo deja modificarlo
+      end
+      # si llega aca, entonces si es el usuario
+      
   end
 
   # POST /eventos
