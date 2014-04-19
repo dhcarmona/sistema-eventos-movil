@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">¿Donde es hoy?</string>
+    <string name="open_drawer">Drawer abierto</string>
+	<string name="close_drawer">Drawer cerrado</string>
+	<string name="large_text">Large Text</string>
+	<string name="APP_ID">438112362958744</string>
+	<string name="get_started">To get started, log in using Facebook</string>
+	<string name="settings">Settings</string>
+</resources>
