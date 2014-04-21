@@ -4,7 +4,14 @@ class UsuariosController < ApplicationController
   #GET /usuarios
   #GET /usuarios.json
   def index
-    @usuarios = Usuario.all
+    redirect_to :controller=>'login', :action=>'login' #lo manda a loguearse
+  end
+
+  def info
+    @establecimiento = Establecimiento.find(params[:id])
+    comentarios = @establecimiento.EstComentarios
+    coms=comentarios.map { |comentario| { :nombre_usuario => comentario.usuario.nombre, :contenido => comentario.descripcion }}
+    render json: coms
   end
 
   # GET /usuarios/1
@@ -20,14 +27,15 @@ class UsuariosController < ApplicationController
       }
       format.json { #si el request es por JSON
         #####  IMPORTANTE -> verificar identidad antes de enviar json.
-        render json: @usuario 
+
+        render json: { :nombre => @usuario.nombre, :id => @usuario.id, :email => @usuario.email, :imagen => @usuario.foto.url(:small) } 
       }
       end
   end
 
   # GET /usuarios/new
   def new
-    @usuario = Usuario.new
+    redirect_to :controller=>'login', :action=>'login' #lo manda a loguearse
   end
 
   # GET /usuarios/1/edit
@@ -57,6 +65,10 @@ class UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1
   # PATCH/PUT /usuarios/1.json
   def update
+    @usuario = Usuario.find(params[:id]) #busca el usuario con ese id
+      if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+        redirect_to :controller=>'login', :action=>'login'
+      end
     respond_to do |format|
       if @usuario.update(usuario_params)
         format.html { redirect_to @usuario, notice: 'Usuario was successfully updated.' }

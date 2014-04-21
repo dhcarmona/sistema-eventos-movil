@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_locale
+
 
 
 # lo siguiente es para que los strong params puedan ser modificados por el controlador de registration de Devise, es como el 
@@ -19,4 +21,11 @@ def configure_permitted_parameters
 	u.permit :username, :email, :password, :password_confirmation, :foto, :facebook, :nombre, :twitter, :current_password
 	end
 end
+
+private
+
+def set_locale
+  I18n.locale = params[:locale] || "es"
+end
+
 end

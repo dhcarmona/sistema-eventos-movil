@@ -1,0 +1,31 @@
+<h1>Listing ev_comentarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Descripcion</th>
+      <th>Usuario</th>
+      <th>Evento</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ev_comentarios.each do |ev_comentario| %>
+      <tr>
+        <td><%= ev_comentario.descripcion %></td>
+        <td><%= ev_comentario.usuario_id %></td>
+        <td><%= ev_comentario.evento_id %></td>
+        <td><%= link_to 'Show', ev_comentario %></td>
+        <td><%= link_to 'Edit', edit_ev_comentario_path(ev_comentario) %></td>
+        <td><%= link_to 'Destroy', ev_comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ev comentario', new_ev_comentario_path %>

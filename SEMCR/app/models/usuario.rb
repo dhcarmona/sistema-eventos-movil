@@ -9,7 +9,10 @@ class Usuario < ActiveRecord::Base
  #OJO -> cambiar si se cambia de ambiente 
  Paperclip.options[:command_path] = 'C:\Program Files (x86)\ImageMagick-6.5.6-Q8'
  
- has_many :establecimientos
+ has_many :establecimientos, :dependent => :destroy
+ has_many :EstComentarios, :dependent => :destroy
+ has_many :EvComentarios, :dependent => :destroy
 
  has_attached_file :foto, :styles => {:small => "50x50", :medium => "200x200"}
+ 
 end

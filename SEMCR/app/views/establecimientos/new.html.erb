@@ -44,9 +44,13 @@
     <%= f.label "Usuario" %><br>
     <%= label_tag @usuario.nombre%>
   </div>
+
+  <div align="center"><%= f.label 'Imagen' %><br />
+      <%= f.file_field :foto, :class => "form_control"  %></div>
+
   <div align="center",  class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Guardar'%>
   </div>
 <% end %>
 
-<%= link_to 'Back', @usuario%>
+<%= link_to 'Atrás', @usuario%>

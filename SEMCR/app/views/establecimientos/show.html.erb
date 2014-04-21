@@ -1,34 +1,81 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+    <h1 align="center">Sistema de Eventos Móvil</h1>
+    <h3 align="center">Eventos y Organizaciones</h3>
+    <p>&nbsp;</p>
+    <h2 align="center">Establecimiento</h2>
+
+<p align="center">
   <strong>Nombre:</strong>
   <%= @establecimiento.nombre %>
 </p>
 
-<p>
+        <p align="center">
+          <%= image_tag @establecimiento.foto.url(:medium)%>
+        </p>
+
+<p align="center">
   <strong>Direccion:</strong>
   <%= @establecimiento.direccion %>
 </p>
 
-<p>
+<p align="center">
   <strong>Longitud:</strong>
   <%= @establecimiento.longitud %>
 </p>
 
-<p>
+<p align="center">
   <strong>Latitud:</strong>
   <%= @establecimiento.latitud %>
 </p>
 
-<p>
+<p align="center">
   <strong>Descripcion:</strong>
   <%= @establecimiento.descripcion %>
 </p>
 
-<p>
+<p align="center">
   <strong>Usuario:</strong>
-  <%= @establecimiento.usuario_id %>
+  <%= @establecimiento.usuario.nombre %>
 </p>
+<p>&nbsp;</p>
 
-<%= link_to 'Edit', edit_establecimiento_path(@establecimiento) %> |
-<%= link_to 'Back', establecimientos_path %>
+
+<h4 align="center">Comentarios de los Usuarios</h4>
+
+<% if (@establecimiento.EstComentarios.empty?) %>
+        <h5 align="center">No tiene comentarios.</h4>
+<% else %>
+      <table class="table" width="330">
+        <tr>  
+            <td width="230"><strong>Usuario</strong></td>
+            <td width="100"><strong>Contenido</strong></td>
+        </tr>
+        <% @establecimiento.EstComentarios.each do |estcomentario| %>
+            <tr>
+            <td width="230"><%= estcomentario.usuario.nombre %></td>
+            <td width="100"><%= estcomentario.descripcion %></td>
+            </tr>
+          <% end %>
+        
+          
+        </tr>
+      </table>
+<% end %>
+
+<p>&nbsp;</p>
+
+
+<h4 align="center">Añadir Comentario</h4>
+<%= form_tag agregar_comentario_establecimiento_path do%>
+
+<p align="center"><%=text_field_tag "comentario"%></p>
+
+<p align="center"><%=submit_tag "Guardar"%></p> 
+
+<% end %>
+<% if (usuario_signed_in?) %>
+  <%= link_to 'Atrás', current_usuario %>
+<%else %>
+  <%= link_to 'Atrás', root_path %>
+<% end %>  

@@ -1,5 +1,64 @@
-<h1>New evento</h1>
+<div class="container">
+  <div class="content">
 
-<%= render 'form' %>
+    <h1 align="center">Sistema de Eventos Móvil</h1>
+    <h3 align="center">Eventos y Organizaciones</h3>
+    <p>&nbsp;</p>
+    <h2 align="center">Registrar Evento</h2>
 
-<%= link_to 'Back', eventos_path %>
+<%= form_for(@evento, :html=> {:multipart => true}) do |f| %>
+  <% if @evento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this evento from being saved:</h2>
+
+      <ul>
+      <% @evento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div align="center", class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div align="center", class="field">
+    <%= f.label 'Descripción' %><br>
+    <%= f.text_area :descripcion %>
+  </div>
+
+  <% #select para el establecimiento  %>
+  <div align="center", class="field">
+    <%= f.label :establecimiento_id %><br>
+    <%= f.collection_select :establecimiento_id, @usuario.establecimientos, :id, :nombre, prompt: 'Seleccione el establecimiento' %>
+  </div>
+
+
+  <div align="center", class="field">
+    <%= f.label "Horario" %><br>
+    <%= f.datetime_select :horario %>
+  </div>
+
+<%= f.fields_for :ImagenEventos do |ff| %>
+
+    <% if ff.object.new_record? %>
+     <div align="center">
+
+      <%= ff.label :foto, "Seleccione Imagen" %>
+      <%= ff.file_field :foto %>
+     
+      </div>
+    <% end %>
+
+<% end %>  
+
+  <div align="center", class="actions">
+    <%= f.submit 'Registrar' %>
+  </div>
+<% end %>
+
+<%= link_to 'Atrás', @usuario %>
+
+</div>
+</div>

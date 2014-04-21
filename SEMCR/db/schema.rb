@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417191339) do
+ActiveRecord::Schema.define(version: 20140420151910) do
+
+  create_table "est_comentarios", force: true do |t|
+    t.text     "descripcion"
+    t.integer  "usuario_id"
+    t.integer  "establecimiento_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "establecimientos", force: true do |t|
     t.string   "nombre"
@@ -22,6 +30,18 @@ ActiveRecord::Schema.define(version: 20140417191339) do
     t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+  end
+
+  create_table "ev_comentarios", force: true do |t|
+    t.text     "descripcion"
+    t.integer  "usuario_id"
+    t.integer  "evento_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "eventos", force: true do |t|
@@ -30,6 +50,31 @@ ActiveRecord::Schema.define(version: 20140417191339) do
     t.integer  "establecimiento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "horario"
+  end
+
+  create_table "eventos_tipos_{:id=>false}", id: false, force: true do |t|
+    t.integer "eventos_tipo_id", null: false
+    t.integer "{:id=>false}_id", null: false
+    t.integer "evento_id",       null: false
+    t.integer "tipo_id",         null: false
+  end
+
+  create_table "horarios", force: true do |t|
+    t.datetime "fecha"
+    t.integer  "evento_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "imagen_eventos", force: true do |t|
+    t.integer  "evento_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
   end
 
   create_table "imagenes_establecimientos", force: true do |t|
@@ -37,6 +82,13 @@ ActiveRecord::Schema.define(version: 20140417191339) do
     t.integer  "id_establecimiento"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tipos", force: true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "evento_id"
   end
 
   create_table "usuarios", force: true do |t|

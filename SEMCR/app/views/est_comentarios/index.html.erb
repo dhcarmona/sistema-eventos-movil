@@ -1,0 +1,31 @@
+<h1>Listing est_comentarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Descripcion</th>
+      <th>Usuario</th>
+      <th>Establecimiento</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @est_comentarios.each do |est_comentario| %>
+      <tr>
+        <td><%= est_comentario.descripcion %></td>
+        <td><%= est_comentario.usuario_id %></td>
+        <td><%= est_comentario.establecimiento_id %></td>
+        <td><%= link_to 'Show', est_comentario %></td>
+        <td><%= link_to 'Edit', edit_est_comentario_path(est_comentario) %></td>
+        <td><%= link_to 'Destroy', est_comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Est comentario', new_est_comentario_path %>

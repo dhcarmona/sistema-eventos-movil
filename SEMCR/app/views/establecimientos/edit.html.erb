@@ -1,6 +1,54 @@
-<h1>Editing establecimiento</h1>
 
-<%= render 'form' %>
+    <h1 align="center">Sistema de Eventos Móvil</h1>
+    <h3 align="center">Eventos y Organizaciones</h3>
+    <p>&nbsp;</p>
+    <h2 align="center">Editar Establecimiento</h2>
 
-<%= link_to 'Show', @establecimiento %> |
-<%= link_to 'Back', establecimientos_path %>
+	<%= form_for(@establecimiento) do |f| %>
+	  <% if @establecimiento.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@establecimiento.errors.count, "error prohibió", "errores prohibieron") %> que este establecimiento se registrara:</h2>
+	      <ul>
+	      <% @establecimiento.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  <div align="center", class="field">
+	    <%= f.label :nombre %><br>
+	    <%= f.text_field :nombre %>
+	  </div>
+	  <div align="center", class="field">
+	    <%= f.label "Direccíón" %><br>
+	    <%= f.text_area :direccion %>
+	  </div>
+	  <div align="center", class="field">
+	    <%= f.label :longitud %><br>
+	    <%= f.text_field :longitud %>
+	  </div>
+	  <div align="center", class="field">
+	    <%= f.label :latitud %><br>
+	    <%= f.text_field :latitud %>
+	  </div>
+	   <p class="help-block" align="center">Puede obtenerlos de Google Maps.</p>
+	  <div align="center", class="field">
+	    <%= f.label :descripcion %><br>
+	    <%= f.text_area :descripcion %>
+	  </div>
+	  <p>&nbsp;</p>
+	  <div align="center", class="field">
+	    <%= f.label "Usuario" %><br>
+	    <%= label_tag @usuario.nombre%>
+	  </div>
+
+	  <div align="center"><%= f.label 'Imagen' %><br />
+	      <%= f.file_field :foto, :class => "form_control"  %></div>
+
+	  <div align="center",  class="actions">
+	    <%= f.submit 'Guardar'%>
+	  </div>
+	<% end %>
+
+<%= link_to 'Atrás', current_usuario %>

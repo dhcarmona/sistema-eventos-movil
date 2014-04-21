@@ -1,19 +1,71 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+    <h1 align="center">Sistema de Eventos Móvil</h1>
+    <h3 align="center">Eventos y Organizaciones</h3>
+    <p>&nbsp;</p>
+    <h2 align="center">Evento</h2>
+    <p>&nbsp;</p>
+
+<p align="center">
   <strong>Nombre:</strong>
   <%= @evento.nombre %>
 </p>
 
-<p>
+<p align="center">
   <strong>Descripcion:</strong>
   <%= @evento.descripcion %>
 </p>
 
-<p>
+<p align="center">
   <strong>Establecimiento:</strong>
   <%= @evento.establecimiento_id %>
 </p>
 
-<%= link_to 'Edit', edit_evento_path(@evento) %> |
-<%= link_to 'Back', eventos_path %>
+<p align="center">
+  <strong>Horario:</strong>
+  <%= @evento.horario %>
+</p>
+<p align="center">
+  <strong>Imágenes del Evento:</strong><br>
+
+<% @evento.ImagenEventos.each do |imagen| %>
+      <%= image_tag imagen.foto.url(:medium) %>
+<% end %>
+
+
+<h4 align="center">Etiquetas</h4>
+
+<% if (@evento.tipos.empty?) %>
+        <h5 align="center">No tiene etiquetas.</h4>
+<% else %>
+ 
+ 
+        <% @evento.tipos.each do |tipo| %>
+         
+             <p align="center"><%= tipo.nombre %></p>
+
+          <% end %>
+        
+      
+        </tr>
+      </table>
+<% end %>
+
+
+
+ <p>&nbsp;</p>
+ 
+<h4 align="center">Añadir Tipo/Etiqueta</h4>
+<%= form_tag agregar_tipo_evento_path do%>
+
+<p align="center"><%=text_field_tag "tipo"%></p>
+
+<p align="center"><%=submit_tag "Guardar"%></p> 
+
+<% end %>
+
+<% if (usuario_signed_in?) %>
+  <%= link_to 'Atrás', current_usuario %>
+<%else %>
+  <%= link_to 'Atrás', root_path %>
+<% end %>  

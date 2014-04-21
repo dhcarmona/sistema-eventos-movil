@@ -2,13 +2,14 @@
 
 <body>
 
-<div class="container">
-  <div class="content">
-    <table cellpadding="20">
-      <tr>
+
+    <table cellspacing="200">
+
         <td width="360">
-        	<div class="bg-primary">
-				<h1 align="center">&nbsp;</h1>
+
+        	<h1 align="center">&nbsp;</h1>
+        	<div class="bg-info">
+				
 				
 				<p align="center">
 				  <%= @usuario.nombre %>
@@ -34,10 +35,13 @@
 				</p>
 				<p align="center">
 				<%= link_to 'Editar Usuario', edit_usuario_registration_path, :class => "btn btn-default btn-sm"%></p>
+				<br>
 			</div>
-			<p align="center">&nbsp;</p>
-			<p align="center">&nbsp;</p>
+
 			<h4 align="center">Establecimientos Asociados</h4>
+	          <p align="center"><%= link_to 'Añadir Establecimiento', new_establecimiento_path, :class => "btn btn-default btn-sm"%></p>
+
+
 			<% if (@establecimientos.empty?) %>
 				<h5 align="center">No tiene establecimientos registrados</h4>
 			<% else %>
@@ -51,25 +55,30 @@
 				<% @establecimientos.each do |establecimiento| %>
 					  <tr>
 						<td width="230"><%= establecimiento.nombre %></td>
-						<td width="100"><%= link_to 'Mostrar', establecimiento, :class => "bg-info" %></td>
-						<td width="100"><%= link_to 'Editar', edit_establecimiento_path(establecimiento) %></td>
-						<td width="100"><%= link_to 'Eliminar', establecimiento, method: :delete, data: { confirm: '¿Está segur@?' } %></td>
+						<td width="100"><%= link_to 'Mostrar', establecimiento, :class => "btn btn-default btn-xs" %></td>
+						<td width="100"><%= link_to 'Editar', edit_establecimiento_path(establecimiento), :class => "btn btn-default btn-xs" %></td>
+						<td width="100"><%= link_to 'Eliminar', establecimiento, :class => "btn btn-default btn-xs", method: :delete, data: { confirm: '¿Está segur@?' } %></td>
 					  </tr>
 					<% end %>
-					 <p align="center"><%=link_to "Añadir Establecimiento", new_establecimiento_path, :class => "btn btn-default btn-sm"%></p> 
-					<td width="117">&nbsp;</td>
+				
+					
 				</tr>
 			</table>
 			<% end %>
 		</td>
-        <td width="700"><h1 align="center">Sistema de Eventos Culturales</h1>
+		
+
+        <td width="700">
+       
+
+          <h1 align="center">Sistema de Eventos Culturales</h1>
           <h3 align="center">Gestion de Eventos</h3>
 		  <h1 align="center">&nbsp;</h1>
           <h4 align="center">Eventos Registrados</h4>
           <p align="center"><%= link_to 'Añadir Evento', new_evento_path, :class => "btn btn-default btn-sm"%></p>
-	  <% if (@establecimientos.empty?) %>
+	  	<% if (@establecimientos.empty?) %>
 		<h5 align="center">No tiene eventos registrados</h4>
-	  <% else %>
+	  	<% else %>
 		  <table cellspacing="20" align="center" class="table">
 					<tr>
 								<td width="120"><strong>Nombre</strong></td>
@@ -86,21 +95,21 @@
 								<td width="120"><%= evento.nombre %></td>
 								<td width="120"><%= evento.descripcion %></td>
 								<td width="150"><%= evento.establecimiento.nombre %></td>
-								<td width="100"><%= link_to 'Mostrar', evento %></td>
-								<td width="100"><%= link_to 'Editar', edit_evento_path(evento) %></td>
-								<td width="100"><%= link_to 'Eliminar', evento, method: :delete, data: { confirm: '¿Está segur@?' } %></td>
+								<td width="100"><%= link_to 'Mostrar', evento, :class => "btn btn-default btn-xs"  %></td>
+								<td width="100"><%= link_to 'Editar', edit_evento_path(evento), :class => "btn btn-default btn-xs"  %></td>
+								<td width="100"><%= link_to 'Eliminar', evento, :class => "btn btn-default btn-xs" , method: :delete, data: { confirm: '¿Está segur@?' } %></td>
 							</tr>
 		 
 				<% end %>
 			  <% end %>
-		 </table>
-	  <% end %>
-        <p></p></td>
+
+		  </table>
+	    <% end %>
+        </td>
       </tr>
     </table>
-    <h1 align="center">&nbsp;</h1>
-    <!-- end .content --></div>
-  <!-- end .container --></div>
+    
+
 </body>
 
 

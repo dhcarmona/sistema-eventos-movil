@@ -1,0 +1,14 @@
+    <h1 align="center">Sistema de Eventos Móvil</h1>
+    <h3 align="center">Eventos y Organizaciones</h3>
+    <p>&nbsp;</p>
+    <h2 align="center">Registrar Horario</h2>
+    <p>&nbsp;</p>
+    
+<%= simple_form_for @evento, :url => url_for(:action => 'agregar_horario', :controller => 'eventos_controller'), html: {class: 'form-horizontal', align: "center" }) do |form| %>
+<%= form.input :horario%>
+<p>&nbsp;</p>
+<%= form.button :submit %>
+
+<% end %> 
+
+
