@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ 
+    <string-array name="nav_options">
+        <item>Inicio</item>
+        <item>Usuario</item>
+        <item>Buscar</item>
+        <item>Contacto</item>
+        <item>Salir</item>
+    </string-array>
+ 
+</resources>
