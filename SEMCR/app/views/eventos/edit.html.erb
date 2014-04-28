@@ -3,7 +3,7 @@
     <p>&nbsp;</p>
     <h2 align="center">Editar Evento</h2>
 
-<%= form_for(@evento) do |f| %>
+<%= simple_form_for(@evento, :html=> {:multipart => true}) do |f| %>
   <% if @evento.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this evento from being saved:</h2>
@@ -16,7 +16,7 @@
     </div>
   <% end %>
 
-  <div align="center", class="field">
+ <div align="center", class="field">
     <%= f.label :nombre %><br>
     <%= f.text_field :nombre %>
   </div>
@@ -30,20 +30,20 @@
     <%= f.label :establecimiento_id %><br>
     <%= f.collection_select :establecimiento_id, @usuario.establecimientos, :id, :nombre, prompt: 'Seleccione el establecimiento' %>
   </div>
-  <p>&nbsp;</p>
+
 
   <div align="center", class="field">
-    <%= f.label "Horario" %><br>
-    <%= f.datetime_select :horario %>
+     <%= f.input :horario,  :as => 'datetime_picker'%>
+    <p>&nbsp;</p>
   </div>
 
 <%= f.fields_for :ImagenEventos do |builder| %>
 
     <% if builder.object.new_record? %>
-
-      <%= builder.label :foto, "Seleccione Imagen" %>
+    <div align="center", class="field">
+      <%= builder.label :foto, "Añadir Imagen" %>
       <%= builder.file_field :foto %>
-
+    </div>
     <% end %>
 
 <% end %>  

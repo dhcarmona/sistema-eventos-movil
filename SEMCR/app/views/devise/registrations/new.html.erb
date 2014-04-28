@@ -1,46 +1,33 @@
 <div class="container">
-  <div class="content">
+  <div class="row">
+    <div class="offset3 span6">
+        <h3 align="center">Registrar Usuario</h1>
 
-    <h1 align="center">Sistema de Eventos Móvil</h1>
-    <h3 align="center">Eventos y Organizaciones</h3>
-    <p>&nbsp;</p>
-    <h2 align="center">Registro de Nuevo Usuario</h2>
+        <p>&nbsp;</p>
 
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => "form-horizontal centered"}) do |f| %>
+        <%= f.error_notification %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  	<div align="center"> <%= devise_error_messages! %> </div>
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true, :label => "Correo Electrónico", :placeholder => "pedro@dominio.com", :as => "email"%>
+          <%= f.input :password, required: true, :label => "Contraseña", :placeholder => "8 caracteres mínimo." %>
+          <%= f.input :password_confirmation, :label => "Confirmar Contraseña" %>
+          <%= f.input :foto, :label => "Imagen de Perfil", :hint => "Archivos JPG/PNG" %>
 
-  	<form role="form">
-	<div class="form-group">
+        </div>
 
-		  <div align="center"><%= f.label 'Nombre' %><br />
-		  <%= f.text_field :nombre, autofocus: true, :class => "form_control" %></div>
-
-		  <div align="center"><%= f.label 'Nombre de Usuario' %><br />
-		  <%= f.text_field :username, :class => "form_control"  %></div>
-
-		  <div align="center"><%= f.label 'Correo Electrónico' %><br />
-		  <%= f.email_field :email, :class => "form_control"  %></div>
-
-		  <div align="center"><%= f.label 'Imagen' %><br />
-		  <%= f.file_field :foto, :class => "form_control"  %></div>
-
-    <p>&nbsp;</p>
-		  <div align="center"><%= f.label 'Facebook' %><br />
-		  <%= f.text_field :facebook, :class => "form_control"  %></div>
-		  <div align="center"><%= f.label 'Twitter' %><br />
-		  <%= f.text_field :twitter, :class => "form_control"  %></div>
-    <p>&nbsp;</p>
-
-  <div align="center"><%= f.label 'Contraseña' %><br />
-    <%= f.password_field :password, autocomplete: "off", :class => "form_control"  %></div>
-
-  <div align="center"><%= f.label 'Confirmar contraseña' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form_control"  %></div>
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <%= f.button :submit, "Registrar", :class => "btn btn-primary" %>
+          </div>
+        </div>
+        
+      <% end %>
     </div>
- 		 <div align="center"><%= f.submit "Registrar" %></div>
- 	
- 	</form>
-<% end %>
-</div></div>
+  </div>
+</div>
+
+
 

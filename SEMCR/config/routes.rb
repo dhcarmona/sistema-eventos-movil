@@ -13,6 +13,7 @@ SEMCR::Application.routes.draw do
   resources :establecimientos do
     post 'agregar_comentario', :on => :member
   end
+
   resources :establecimientos do
     get 'comentarios', :on => :member
   end
@@ -27,7 +28,6 @@ SEMCR::Application.routes.draw do
   resources :eventos do
     post 'agregar_tipo', :on => :member
   end
-
 
   post "login/login"
   get "usuarios/new"

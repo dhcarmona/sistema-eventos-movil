@@ -1,0 +1,33 @@
+		  <h1 align="center">&nbsp;</h1>
+          <h4 align="center">Eventos Registrados</h4>
+          <p align="center"><%= link_to 'Añadir Evento', new_evento_path, :class => "btn btn-default btn-sm"%></p>
+
+	  	<% if (@establecimientos.empty?) %>
+		<h5 align="center">No tiene eventos registrados</h4>
+	  	<% else %>
+		  <table cellspacing="20" align="center" class="table">
+					<tr>
+								<td width="120"><strong>Nombre</strong></td>
+								<td width="120"><strong>Descripción</strong></td>
+								<td width="150"><strong>Establecimiento</strong></td>
+								<td width="100"><%= %></td>
+								<td width="100"><%= %></td>
+								<td width="100"><%= %></td>
+					</tr>
+			  <% @establecimientos.each do |establecimiento| %>
+				<% @eventos = establecimiento.eventos %>
+				<% @eventos.each do |evento| %>
+							<tr>
+								<td width="120"><%= evento.nombre %></td>
+								<td width="120"><%= evento.descripcion %></td>
+								<td width="150"><%= evento.establecimiento.nombre %></td>
+								<td width="100"><%= link_to '', evento, :class => "glyphicon glyphicon-eye-open" %></td>
+								<td width="100"><%= link_to '', edit_evento_path(evento), :class => "glyphicon glyphicon-tasks" %></td>
+								<td width="100"><%= link_to '', evento, :class => "glyphicon glyphicon-trash", method: :delete, data: { confirm: '¿Está segur@?' } %></td>
+							</tr>
+		 
+				<% end %>
+			  <% end %>
+
+		  </table>
+	    <% end %>

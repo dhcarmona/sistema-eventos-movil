@@ -22,6 +22,7 @@
     <%= f.label :nombre %><br>
     <%= f.text_field :nombre %>
   </div>
+
   <div align="center", class="field">
     <%= f.label "Direccíón" %><br>
     <%= f.text_area :direccion %>
@@ -42,7 +43,7 @@
   <p>&nbsp;</p>
   <div align="center", class="field">
     <%= f.label "Usuario" %><br>
-    <%= label_tag @usuario.nombre%>
+    <%= label_tag @usuario.email%>
   </div>
 
   <div align="center"><%= f.label 'Imagen' %><br />

@@ -1,48 +1,24 @@
-<div class="container">
-  <div class="content">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
-    <h1 align="center">Sistema de Eventos Móvil</h1>
-    <h3 align="center">Eventos y Organizaciones</h3>
-    <p>&nbsp;</p>
-    <h2 align="center">Editar Usuario</h2>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "form-horizontal centered" }) do |f| %>
+  <%= f.error_notification %>
 
+  <div class="form-inputs">
+    <%= f.input :email, required: true, autofocus: true, :label => "Correo Electrónico" %>
+    <%= f.input :username, required: false, label: "Nombre de Usuario"%>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <div align="center"><%= devise_error_messages! %></div>
+    <%= f.input :foto, :label => "Imagen de Perfil", :hint => "Archivos JPG/PNG" %>
 
-      <div align="center"><%= f.label 'Nombre' %><br />
-      <%= f.text_field :nombre, autofocus: true, :class => "form_control" %></div>
+    <%= f.input :password, autocomplete: "off", hint: "Déjela en blanco si no desea cambiarla.", required: false, :label => "Contraseña"  %>
 
-      <div align="center"><%= f.label 'Nombre de Usuario' %><br />
-      <%= f.text_field :username, :class => "form_control"  %></div>
+    <%= f.input :password_confirmation, required: false, :label => "Confirmar Contraseña"  %>
+    <%= f.input :current_password, hint: "Se necesita su contraseña actual para confirmar los cambios", required: true %>
+  </div>
 
-      <div align="center"><%= f.label 'Correo Electrónico' %><br />
-      <%= f.email_field :email, :class => "form_control"  %></div>
-
-      <div align="center"><%= f.label 'Imagen' %><br />
-      <%= f.file_field :foto, :class => "form_control"  %></div>
-
-    <p>&nbsp;</p>
-      <div align="center"><%= f.label 'Facebook' %><br />
-      <%= f.text_field :facebook, :class => "form_control"  %></div>
-      <div align="center"><%= f.label 'Twitter' %><br />
-      <%= f.text_field :twitter, :class => "form_control"  %></div>
-    <p>&nbsp;</p>
-
-  <div align="center"><%= f.label 'Contraseña' %> <i>(déjela en blanco si no quiere cambiarla)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div align="center"><%= f.label 'Confirmar contraseña' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div align="center"><%= f.label 'Contraseña actual' %> <i>(se necesita su contraseña actual para confirmar los cambios)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-  <div align="center"><%= f.submit "Guardar Cambios" %></div>
-
+  <div class="form-actions">
+    <%= f.button :submit, "Guardar Cambios" %>
+  </div>
 <% end %>
 
-    <!-- end .content --></div>
-  <!-- end .container --></div>
-
-<%= link_to 'Atrás', usuarios_path %>

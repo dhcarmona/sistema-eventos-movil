@@ -8,4 +8,7 @@ def flash_class(level)
         when :alerta then "alert alert-error"
     end
 end
+
+
+
 end

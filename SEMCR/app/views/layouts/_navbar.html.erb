@@ -1,0 +1,23 @@
+<%= nav_bar :fixed => :top, :brand => "Sistema de Eventos Móvil", :responsive => "true" do %>
+    <%= menu_group do %>
+        <% if current_usuario %>
+            <%= menu_item "Inicio", root_path %>
+            <%= menu_divider %>
+            <%= drop_down "Establecimientos" do %>
+                <%= menu_item "Registrar", new_establecimiento_path %>          
+            <% end %>
+            <%= drop_down "Eventos" do %>
+                <%= menu_item "Registrar", new_evento_path %>          
+            <% end %>
+        <% end %>
+    <% end %>
+    <%= menu_group :pull => :right do %>
+        <% if current_usuario %>
+            <%= menu_item "Cerrar Sesión", destroy_usuario_session_path, method: :delete, :class => "btn btn-default btn-xs"  %>
+        <% else %>
+            <%= menu_item "Iniciar Sesión", root_path %>
+            <%= menu_item "Registro", new_usuario_registration_path%>
+        <% end %>
+        
+    <% end %>
+<% end %>

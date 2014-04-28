@@ -4,8 +4,8 @@
     <h2 align="center">Registrar Horario</h2>
     <p>&nbsp;</p>
     
-<%= simple_form_for @evento, :url => url_for(:action => 'agregar_horario', :controller => 'eventos_controller'), html: {class: 'form-horizontal', align: "center" }) do |form| %>
-<%= form.input :horario%>
+<%= simple_form_for @evento, html: {class: 'form-horizontal', align: "center" } do |form| %>
+<%= form.input :horario,  :as => 'datetime_picker'%>
 <p>&nbsp;</p>
 <%= form.button :submit %>
 

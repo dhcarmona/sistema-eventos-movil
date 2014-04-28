@@ -14,6 +14,16 @@ class UsuariosController < ApplicationController
     render json: coms
   end
 
+  def eventos
+    @usuario = Usuario.find(params[:id]) #busca el usuario con ese id
+      if (current_usuario != @usuario) #si el usuario logueado no es el mismo
+        redirect_to :controller=>'login', :action=>'login'
+      end
+    @eventos = usuario.establecimientos.eventos
+  end
+
+
+
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show
@@ -26,9 +36,15 @@ class UsuariosController < ApplicationController
         @establecimientos = @usuario.establecimientos
       }
       format.json { #si el request es por JSON
-        #####  IMPORTANTE -> verificar identidad antes de enviar json.
+        
+                    if (params[:appkey].eql? appkey)  #si el appkey es correcto
+                      
+                      render json: { :nombre => @usuario.nombre, :id => @usuario.id, :email => @usuario.email, :imagen => @usuario.foto.url(:small) } 
+                    else
+                             render json: {:error => "No autorizado"}
+                    end
 
-        render json: { :nombre => @usuario.nombre, :id => @usuario.id, :email => @usuario.email, :imagen => @usuario.foto.url(:small) } 
+
       }
       end
   end

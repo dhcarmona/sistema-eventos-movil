@@ -1,21 +1,28 @@
 class EventosController < ApplicationController
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
+  helper :all
 
   # GET /eventos
   # GET /eventos.json
   def index
     @eventos = Evento.all
     respond_to do |format|
-      format.json {   evs = @eventos.map { |evento| { :nombre_evento => evento.nombre, :id => evento.id, 
+      format.json { 
+                  if (params[:appkey].eql? appkey)  #si el appkey es correcto
+                    evs = @eventos.map { |evento| { :nombre_evento => evento.nombre, :id => evento.id, 
                                                           :descripcion => evento.descripcion, :establecimiento_nombre => evento.establecimiento.nombre,
                                                       :establecimiento_id => evento.establecimiento.id, :tipos => evento.tipos.map {|tipo| {:nombre => tipo.nombre } } } }
 
-                    render json: evs  }
+                    render json: evs 
+                  else
+                    render json: {:error => "No autorizado"}
+                  end
+                  }
       format.html { redirect_to :controller=>'login', :action=>'login' } #solo el app movil puede revisar toda la lista de eventos.
     end
   end
 
-  #POST /eventos/1/nuevo_horario
+  #GET /eventos/1/nuevo_horario
   # esta accion renderiza el view para poder agregar un nuevo horario al evento
   def nuevo_horario
     @usuario = Evento.find(params[:id]).establecimiento.usuario #busca el usuario al que pertenece el evento
@@ -49,9 +56,17 @@ class EventosController < ApplicationController
     ev = @evento
     respond_to do |format|
       format.html
-      format.json { render :json => {:nombre => ev.nombre, :descripcion => ev.descripcion, :horario => ev.horario, :establecimiento_nombre => ev.establecimiento.nombre,
+      format.json { 
+                    if (params[:appkey].eql? appkey)  #si el appkey es correcto
+                          render :json => {:nombre => ev.nombre, :descripcion => ev.descripcion, :horario => ev.horario, :establecimiento_nombre => ev.establecimiento.nombre,
                                     :establecimiento_id => ev.establecimiento.id, :tipos => ev.tipos.map {|tipo| {:nombre => tipo.nombre } },
-                                    :imagenes => ev.ImagenEventos.map { |img| { :url => img.foto.url(:small) }  }  } }  
+                                    :imagenes => ev.ImagenEventos.map { |img| { :url => img.foto.url(:small) }  }  } 
+                  else
+                    render json: {:error => "No autorizado"}
+                  end
+
+                                  }  
+
     end
   end
 

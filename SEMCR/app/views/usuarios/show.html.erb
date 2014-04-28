@@ -2,116 +2,21 @@
 
 <body>
 
-
-    <table cellspacing="200">
-
-        <td width="360">
-
-        	<h1 align="center">&nbsp;</h1>
-        	<div class="bg-info">
-				
-				
-				<p align="center">
-				  <%= @usuario.nombre %>
-				</p>
-
-				<p align="center">
-				  <%= image_tag @usuario.foto.url(:medium)%>
-				</p>
-
-				<p align="center">
-				  <strong>Nombre de Usuario:</strong>
-				  <%= @usuario.username %>
-				</p align="center">
-
-				<p align="center">
-				  <strong>Facebook:</strong>
-				  <%= @usuario.facebook %>
-				</p>
-
-				<p align="center">
-				  <strong>Twitter:</strong>
-				  <%= @usuario.twitter %>
-				</p>
-				<p align="center">
-				<%= link_to 'Editar Usuario', edit_usuario_registration_path, :class => "btn btn-default btn-sm"%></p>
-				<br>
-			</div>
-
-			<h4 align="center">Establecimientos Asociados</h4>
-	          <p align="center"><%= link_to 'Añadir Establecimiento', new_establecimiento_path, :class => "btn btn-default btn-sm"%></p>
+<div class="row">
+  <div class="col-md-4">
+  		<%= render :partial => "info_usuario" %>
 
 
-			<% if (@establecimientos.empty?) %>
-				<h5 align="center">No tiene establecimientos registrados</h4>
-			<% else %>
-			<table class="table">
-				<tr>	
-						<td width="230"><strong>Nombre</strong></td>
-						<td width="100"><%= %></td>
-						<td width="100"><%= %></td>
-						<td width="100"><%= %></td>
-				</tr>
-				<% @establecimientos.each do |establecimiento| %>
-					  <tr>
-						<td width="230"><%= establecimiento.nombre %></td>
-						<td width="100"><%= link_to 'Mostrar', establecimiento, :class => "btn btn-default btn-xs" %></td>
-						<td width="100"><%= link_to 'Editar', edit_establecimiento_path(establecimiento), :class => "btn btn-default btn-xs" %></td>
-						<td width="100"><%= link_to 'Eliminar', establecimiento, :class => "btn btn-default btn-xs", method: :delete, data: { confirm: '¿Está segur@?' } %></td>
-					  </tr>
-					<% end %>
-				
-					
-				</tr>
-			</table>
-			<% end %>
-		</td>
-		
+  </div>
+  <div class="col-md-8">.
+  	
+					<%= render :partial => "tabla_establecimientos" %>  
+		          	<%= render :partial => "tabla_eventos" %>
 
-        <td width="700">
-       
-
-          <h1 align="center">Sistema de Eventos Culturales</h1>
-          <h3 align="center">Gestion de Eventos</h3>
-		  <h1 align="center">&nbsp;</h1>
-          <h4 align="center">Eventos Registrados</h4>
-          <p align="center"><%= link_to 'Añadir Evento', new_evento_path, :class => "btn btn-default btn-sm"%></p>
-	  	<% if (@establecimientos.empty?) %>
-		<h5 align="center">No tiene eventos registrados</h4>
-	  	<% else %>
-		  <table cellspacing="20" align="center" class="table">
-					<tr>
-								<td width="120"><strong>Nombre</strong></td>
-								<td width="120"><strong>Descripción</strong></td>
-								<td width="150"><strong>Establecimiento</strong></td>
-								<td width="100"><%= %></td>
-								<td width="100"><%= %></td>
-								<td width="100"><%= %></td>
-					</tr>
-			  <% @establecimientos.each do |establecimiento| %>
-				<% @eventos = establecimiento.eventos %>
-				<% @eventos.each do |evento| %>
-							<tr>
-								<td width="120"><%= evento.nombre %></td>
-								<td width="120"><%= evento.descripcion %></td>
-								<td width="150"><%= evento.establecimiento.nombre %></td>
-								<td width="100"><%= link_to 'Mostrar', evento, :class => "btn btn-default btn-xs"  %></td>
-								<td width="100"><%= link_to 'Editar', edit_evento_path(evento), :class => "btn btn-default btn-xs"  %></td>
-								<td width="100"><%= link_to 'Eliminar', evento, :class => "btn btn-default btn-xs" , method: :delete, data: { confirm: '¿Está segur@?' } %></td>
-							</tr>
-		 
-				<% end %>
-			  <% end %>
-
-		  </table>
-	    <% end %>
-        </td>
-      </tr>
-    </table>
-    
+  </div>
+</div>
+   	
+ 
 
 </body>
 
-
-
-<%= link_to 'Cerrar Sesión', destroy_usuario_session_path, method: :delete%>

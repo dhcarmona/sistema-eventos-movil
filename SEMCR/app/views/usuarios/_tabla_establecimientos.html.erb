@@ -1,0 +1,26 @@
+<h1 align="center">&nbsp;</h1>
+
+			<h4 align="center">Establecimientos Asociados</h4>
+	          <p align="center"><%= link_to 'Añadir Establecimiento', new_establecimiento_path, :class => "btn btn-default btn-sm"%></p>
+
+			<% if (@establecimientos.empty?) %>
+				<h5 align="center">No tiene establecimientos registrados</h4>
+			<% else %>
+			<table class="table" width="145">
+				<tr>	
+						<td width="100"><strong>Nombre</strong></td>
+						<td width="15"><%= %></td>
+						<td width="15"><%= %></td>
+						<td width="15"><%= %></td>
+				</tr>
+				<% @establecimientos.each do |establecimiento| %>
+					  <tr>
+						<td width="100"><%= establecimiento.nombre %></td>
+						<td width="15"><%= link_to '', establecimiento, :class => "glyphicon glyphicon-eye-open" %></td>
+						<td width="15"><%= link_to '', edit_establecimiento_path(establecimiento), :class => "glyphicon glyphicon-tasks" %></td>
+						<td width="15"><%= link_to '', establecimiento, :class => "glyphicon glyphicon-trash", method: :delete, data: { confirm: '¿Está segur@?' } %></td>
+					  </tr>
+					<% end %>				
+				</tr>
+			</table>
+			<% end %>

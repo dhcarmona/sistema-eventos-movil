@@ -4,7 +4,7 @@ class Usuario < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
- attr_accessible :nombre, :email, :password, :id, :username, :foto, :facebook, :twitter
+ attr_accessible :nombre, :email, :password, :id, :username, :foto, :facebook
 
  #OJO -> cambiar si se cambia de ambiente 
  Paperclip.options[:command_path] = 'C:\Program Files (x86)\ImageMagick-6.5.6-Q8'
@@ -13,6 +13,6 @@ class Usuario < ActiveRecord::Base
  has_many :EstComentarios, :dependent => :destroy
  has_many :EvComentarios, :dependent => :destroy
 
- has_attached_file :foto, :styles => {:small => "50x50", :medium => "200x200"}
- 
+ has_attached_file :foto, :styles => {:small => "150x150", :medium => "300x300"}, :default_url => "/images/default/missing.PNG"
+ validates_attachment :foto, :presence => true
 end

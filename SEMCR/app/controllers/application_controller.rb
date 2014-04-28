@@ -28,4 +28,8 @@ def set_locale
   I18n.locale = params[:locale] || "es"
 end
 
+def appkey
+  return "1405ee0b5234c53980d46d493ae2a0cb"
+end
+
 end

@@ -10,23 +10,37 @@ class EstablecimientosController < ApplicationController
 
   # GET /establecimientos/1/comentarios.json
   def comentarios
-    @establecimiento = Establecimiento.find(params[:id])
-    comentarios = @establecimiento.EstComentarios
-    coms=comentarios.map { |comentario| { :nombre_usuario => comentario.usuario.nombre, :contenido => comentario.descripcion }}
-    render json: coms
+      if (params[:appkey].eql? appkey)  #si el appkey es correcto
+        @establecimiento = Establecimiento.find(params[:id])
+        comentarios = @establecimiento.EstComentarios
+        coms=comentarios.map { |comentario| { :nombre_usuario => comentario.usuario.nombre, :contenido => comentario.descripcion }}
+        render json: coms
+      else
+               render json: {:error => "No autorizado"}
+      end
   end
 
   # GET /establecimientos
   # GET /establecimientos.json
-  # Queda abierto solo para el API
   def index
     @establecimientos = Establecimiento.all
     respond_to do |format|
-      format.json {   ests = @establecimientos.map { |establecimiento| { :nombre_establecimiento => establecimiento.nombre, :id => establecimiento.id, 
-                                                          :descripcion => establecimiento.descripcion, :longitud => establecimiento.longitud,
-                                                          :latitud => establecimiento.latitud, :direccion => establecimiento.direccion, :imagen => establecimiento.foto.url(:small),
-                                                          :eventos => establecimiento.eventos.map { |evento| { :nombre => evento.nombre } }      } } 
-                    render json: ests  }
+      format.json {  
+
+                    if (params[:appkey].eql? appkey)  #si el appkey es correcto
+
+                      ests = @establecimientos.map { |establecimiento| { :nombre_establecimiento => establecimiento.nombre, :id => establecimiento.id, 
+                                                            :descripcion => establecimiento.descripcion, :longitud => establecimiento.longitud,
+                                                            :latitud => establecimiento.latitud, :direccion => establecimiento.direccion, :imagen => establecimiento.foto.url(:small),
+                                                            :eventos => establecimiento.eventos.map { |evento| { :nombre => evento.nombre } }      } } 
+                      render json: ests
+                    else
+                             render json: {:error => "No autorizado"}
+                    end
+
+
+
+                      }
       format.html { redirect_to :controller=>'login', :action=>'login' } #solo el app movil puede revisar toda la lista de establecimientos.
     end
   end
@@ -37,9 +51,19 @@ class EstablecimientosController < ApplicationController
     est = @establecimiento
     respond_to do |format|
       format.html
-      format.json { render :json => {:nombre => @establecimiento.nombre, direccion: @establecimiento.direccion, :latitud => @establecimiento.latitud,
-                                    :longitud => @establecimiento.longitud, :descripcion => @establecimiento.descripcion, :imagen => @establecimiento.foto.url(:small),
-                                    :comentarios => @establecimiento.EstComentarios.map { |comentario| { :descripcion => comentario.descripcion, :usuario => comentario.usuario.nombre } } }   }
+      format.json { 
+
+                  if (params[:appkey].eql? appkey)  #si el appkey es correcto
+                    render :json => {:nombre => @establecimiento.nombre, direccion: @establecimiento.direccion, :latitud => @establecimiento.latitud,
+                                     :longitud => @establecimiento.longitud, :descripcion => @establecimiento.descripcion, :imagen => @establecimiento.foto.url(:small),
+                                     :comentarios => @establecimiento.EstComentarios.map { |comentario| { :descripcion => comentario.descripcion, :usuario => comentario.usuario.nombre } } }   
+
+                    else
+                             render json: {:error => "No autorizado"}
+                    end
+
+
+                                 }
       end
       #No tiene restricciones, queda abierto para el API
   end
