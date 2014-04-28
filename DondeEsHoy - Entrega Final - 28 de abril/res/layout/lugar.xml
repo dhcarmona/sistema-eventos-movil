@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Nombre Lugar"
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/ubic"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="18dp"
+        android:text="Ubicación" />
+
+    <Button
+        android:id="@+id/comp"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ubic"
+        android:layout_alignBottom="@+id/ubic"
+        android:layout_centerHorizontal="true"
+        android:text="Compartir" />
+
+    <Button
+        android:id="@+id/cont"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/comp"
+        android:layout_alignBottom="@+id/comp"
+        android:layout_alignParentRight="true"
+        android:text="Contacto" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombre"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/imagen"
+        android:text="Espectáculos"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:padding="5dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/textView2"
+        android:src="@drawable/urbano" />
+
+    <TextView
+        android:id="@+id/espectaculos"
+        android:layout_width="wrap_content"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imagen"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/imagen"
+        android:text="Lista de espectaculos que tiene el lugar correspondiente" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imagen"
+        android:layout_marginTop="16dp"
+        android:text="Descripción"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="20dp"
+        android:text="Descripcion a profundidad del lugar donde se está llevando a cabo el evento correspondiente" />
+
+</RelativeLayout>
