@@ -36,5 +36,5 @@ sistema-eventos-movil
    -   http://semcr.no-ip.biz/recurso/1.json
   
   De igual manera con los establecimientos y los eventos.
-
+  Toda petición a través de JSON debe autenticarse con el AppKey, que para propósito de revisión es       ?appkey=1405ee0b5234c53980d46d493ae2a0cb.
   
