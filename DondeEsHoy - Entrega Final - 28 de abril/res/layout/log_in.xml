@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <Button
+    android:id="@+id/shareButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:visibility="invisible"
+    android:text="Permitir Publicar en tu Muro"
+    />
+    
+    <fragment
+        android:id="@+id/selectionFragment"
+        android:name="com.example.dondeeshoy.SelectionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.dondeeshoy.SplashFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <fragment android:name="com.facebook.widget.UserSettingsFragment"
+          android:id="@+id/userSettingsFragment"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/boton1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+</LinearLayout>
